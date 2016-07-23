@@ -1,4 +1,4 @@
-global.PROJECT_NAME = null
+global.PROJECT_NAME = 'singplepagefullstack'
 
 if (!global.PROJECT_NAME) { //« set by npm run init-dev »
 	throw new Error('no project name set. did you forget to run "npm run init-dev"?')
@@ -53,9 +53,9 @@ connectToDB(global.PROJECT_NAME)
 // =========
 app.use( express.static( __dirname + '/dist/assets') );
 app.use( bodyParser.json() );
-app.use( bodyParser.urlencoded() );
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use( cookieParser() );
-app.use( session({secret: appSecrets.sessionSecret }) );
+app.use( session({secret: appSecrets.sessionSecret, resave: false, saveUninitialized: false}) );
 app.use( passport.initialize() );
 app.use( passport.session() );
 appAuthentication(User)
