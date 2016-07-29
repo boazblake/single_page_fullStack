@@ -37,7 +37,7 @@ authRouter
   .post('/login', passport.authenticate('local'), function(req, res){
       let userCopy = req.user.toObject()
       delete userCopy.password
-      res.json(userCopy)         
+      res.json(userCopy)              
   })
   .get('/logout', function (req, res) {
     if (req.user) {

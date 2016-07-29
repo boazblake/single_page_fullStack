@@ -32,11 +32,21 @@ html, body {
   margin: 0;
 }
 
-
 #navbar-logo{
   width: 32px;
-    
 }
+
+.loginView {
+  position:absolute;
+  float:left;
+  margin-left:2%;
+  top:100%;
+  right:0;
+}
+
+.opacityOFF{
+    opacity: 0;
+  }
 
 /* additional sections */
 #home {
@@ -51,7 +61,7 @@ html, body {
   -o-background-size: cover;
   background-size: cover;
   .text-vcenter h1 {
-    margin-top: -33%;
+    padding-top:5%; 
   }
 }
 

@@ -11,6 +11,7 @@ import About from './views/about.js'
 import Services from './views/services.js'
 import Information from './views/information.js'
 import Contact from './views/contact.js'
+import Login from './views/login.js'
 
 const app = function() {
   //SMOOTH SCROLLING EFFECT
@@ -53,6 +54,8 @@ class App extends React.Component {
 	ReactDOM.render((
     <Router history={browserHistory}>
       <Route path='/' component={App} />
+        <Route path='login' component={Login} />
+        <Route path='dashboard' component={Dashboard} />
     </Router>
     ),document.querySelector('.app'))
 }
