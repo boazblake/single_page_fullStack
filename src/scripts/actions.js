@@ -1,13 +1,30 @@
 import {User} from './models/models'
 
 const ACTIONS = {
-  logUserIn: function(email,password) {
-    return User.login(email,password).then(function(resp){
+ 
+  signUserUp: function(newUserData) {
+    return User.register(newUserData).then(function(resp){
+      console.log(resp, 'resp')
+
+      // location.hash = "home"
+    })
+  },
+
+  logUserIn: function(newUserData) {
+    return User.login(newUserData.email,newUserData.password).then(function(resp){
       console.log(resp)
-      location.hash = "home"
+    })
+  },
+
+  getCurrentUser: function(){
+    console.log(User.getCurrentUser()) 
+  },
+
+  logUserOut: function(){
+    return User.logout().then(function(resp){
+      console.log(resp)
     })
   }
 }
-
 
 export default ACTIONS

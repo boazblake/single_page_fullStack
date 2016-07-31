@@ -1,2 +1,2 @@
 [core]
-    editor = 'subl' --wait
+    editor = 'vim' --wait

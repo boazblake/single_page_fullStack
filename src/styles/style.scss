@@ -46,6 +46,12 @@ html, body {
 
 .opacityOFF{
     opacity: 0;
+    transition: 0.5s ease ;
+  }
+
+  .opacityON{
+    opacity: 1;
+    transition: 0.5s ease ;
   }
 
 /* additional sections */
