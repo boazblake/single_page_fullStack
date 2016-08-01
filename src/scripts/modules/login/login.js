@@ -1,16 +1,18 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { Router, Route, Link, browserHistory } from 'react-router'
-import ACTIONS from '../actions'
+import ACTIONS from '../../actions.js'
 import toastr from 'toastr'
+import Buttons from './loginButtons.js'
 
 export default class Login extends React.Component {
   constructor(props) {
     super(props)
-    
+
     this.state={
       email:'',
-      password:''
+      password:'',
+      loggedIn:(ACTIONS.getCurrentUser())
     }
 
     this._handleLogin = this._handleLogin.bind(this)
@@ -53,7 +55,11 @@ export default class Login extends React.Component {
       ACTIONS.logUserIn(newUserData)
 
       toastr.success('Have fun storming the castle!', 'Miracle Max Says')
-    
+      
+      this.setState({
+        loggedIn:(ACTIONS.getCurrentUser())
+      })
+
      this. _clearInputs()
   }
 
@@ -62,7 +68,11 @@ export default class Login extends React.Component {
       ACTIONS.getCurrentUser()
       ACTIONS.logUserOut()
       ACTIONS.getCurrentUser()
-
+      
+      this.setState({
+        loggedIn:(ACTIONS.getCurrentUser())
+      })
+     
      this. _clearInputs()
   }
 
@@ -71,54 +81,46 @@ export default class Login extends React.Component {
     let password = document.querySelector('#passwordInput')
     email.value = ''
     password.value = ''
+    this.setState({
+      email:'',
+      password:''
+    })
   }
 
 
   render(){
     return(
       <form >
-          <div className="u-full-width">
-            <label style={{color:"white"}} htmlFor="exampleEmailInput">Your Email</label>
+          <div className="u-full-width row">
+           
+            <label style={{color:"white"}} htmlFor="exampleEmailInput" className="four columns">Your Email</label>
+            
             <input onBlur={this._handleUserData}
               className="u-full-width" 
               style={{float:"right"}} 
               type="email"  
               name="email" 
               placeholder="test@mailbox.com" 
-              id="emailInput"/>
+              id="emailInput"
+              className="eight columns"/>
           </div>
 
           <div className="u-full-width">
             
-            <label htmlFor="examplepwd" style={{color:"white"}}>Password</label>
+            <label htmlFor="examplepwd" style={{color:"white"}} className="four columns">Password</label>
 
             <input onBlur={this._handleUserData} 
               style={{float:"right"}} 
-              className="u-full-width" 
+              className="u-full-width row" 
               type="password" 
               name="password" 
               placeholder="password" 
-              id="passwordInput"/>
+              id="passwordInput"
+              className="eight columns"/>
           
           </div>
 
-        <button  onClick={this._handleLogin} 
-          className="btn btn-primary" 
-          type="submitLogOn"   
-          name="logon" 
-          style={{color:"white"}}>LOG   ON</button>
-        
-        <button  onClick={this._handleLogout} 
-          className="btn btn-primary" 
-          type="submitLogOut" 
-          name="logout"  
-          style={{color:"white"}}>LOG OUT</button>
-       
-        <button  onClick={this._handleSignUp} 
-          className="btn btn-primary" 
-          type="submitSignUp" 
-          name="signup"  
-          style={{color:"white"}}>SIGN UP</button>
+       <Buttons _handleSignUp={this._handleSignUp} _handleLogin={this._handleLogin} _handleLogout={this._handleLogout} loggedIn={(this.state.loggedIn)}/ >
 
       </form>
     )
