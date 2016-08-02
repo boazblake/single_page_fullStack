@@ -5,8 +5,6 @@ const ACTIONS = {
   signUserUp: function(newUserData) {
     return User.register(newUserData).then(function(resp){
       console.log(resp, 'resp')
-
-      // location.hash = "home"
     })
   },
 
@@ -17,7 +15,7 @@ const ACTIONS = {
   },
 
   getCurrentUser: function(){
-    console.log(User.getCurrentUser()) 
+    return (User.getCurrentUser()) 
   },
 
   logUserOut: function(){

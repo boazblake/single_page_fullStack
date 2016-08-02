@@ -9,10 +9,15 @@ export default class Login extends React.Component {
   constructor(props) {
     super(props)
 
+    let loggedInState = ACTIONS.getCurrentUser()
+    console.log('loggedInState', loggedInState)
+    console.log('loggedInState true false', (ACTIONS.getCurrentUser() !== {}))
+
+
     this.state={
       email:'',
       password:'',
-      loggedIn:(ACTIONS.getCurrentUser())
+      loggedIn: (ACTIONS.getCurrentUser() !== {})
     }
 
     this._handleLogin = this._handleLogin.bind(this)
@@ -41,6 +46,10 @@ export default class Login extends React.Component {
     ACTIONS.logUserIn(newUserData)
     
      this. _clearInputs()
+
+     this.setState({
+       loggedIn: (ACTIONS.getCurrentUser() !== {})
+     })
   }
 
   _handleLogin(evt){
@@ -57,7 +66,7 @@ export default class Login extends React.Component {
       toastr.success('Have fun storming the castle!', 'Miracle Max Says')
       
       this.setState({
-        loggedIn:(ACTIONS.getCurrentUser())
+        loggedIn: (ACTIONS.getCurrentUser() !== {})
       })
 
      this. _clearInputs()
@@ -70,7 +79,7 @@ export default class Login extends React.Component {
       ACTIONS.getCurrentUser()
       
       this.setState({
-        loggedIn:(ACTIONS.getCurrentUser())
+        loggedIn: (ACTIONS.getCurrentUser() === {})
       })
      
      this. _clearInputs()
@@ -83,7 +92,7 @@ export default class Login extends React.Component {
     password.value = ''
     this.setState({
       email:'',
-      password:''
+      password:'',
     })
   }
 

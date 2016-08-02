@@ -1,6 +1,5 @@
 import React from 'react'
 import { Router, Route, Link, browserHistory } from 'react-router'
-import ACTIONS from '../actions'
 import Login from './login/login.js'
 
 
