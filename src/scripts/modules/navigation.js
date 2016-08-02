@@ -40,7 +40,7 @@ _goToRegisterPage(e){
               <span className="icon-bar"></span>
               <span className="icon-bar"></span>
             </button>
-            <a className="navbar-brand" href="#home"><img id="navbar-logo" src="images/joshLogo.svg"/></a>
+            <a className="navbar-brand" href="#home"><img id="navbar-logo" src="images/navbar-logo.svg"/></a>
           </div>
 
           <div className="collapse navbar-collapse" id="navbar-collapse-main">
@@ -51,7 +51,7 @@ _goToRegisterPage(e){
               <li><Link to="#google_map">Contact</Link></li>
               <li><a id="login" onClick={this._showHideLogin}>Login</a></li>
               <li className={showHide} style={{float:"left", top:"100%", right:0, left:0, position:"absolute", backgroundColor: "#2c3e50", width:"100%"}}>
-                <div  style={{float:"right"}} className="dropdown-content one-half column" id="myDropdown">
+                <div  className="dropdown-content row" id="myDropdown">
                     <Login />
                 </div>
               </li>

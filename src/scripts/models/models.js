@@ -53,6 +53,22 @@ UserAuthModel.getCurrentUser = function() {
 	return localStorage[app_name + '_user'] ? JSON.parse(localStorage[app_name + '_user']) : null
 }
 
+UserAuthModel.updateCurrentUser = function(currentUserID, newUserInfo){
+	return $.ajax({
+			method: 'PUT',
+			type: 'json',
+			url: `/api/users/${currentUserID}`,
+			data: {
+				name: newUserInfo.newUserName,
+				email: newUserInfo.newUserEmail,
+				password: newUserInfo.newUserPassword,
+				cellphone: newUserInfo.newUserCellphone
+			}
+		}).then((userData) => {
+			localStorage[app_name + '_user'] = JSON.stringify(userData)
+			return userData
+		},(err)=> {console.log(err.responseText)})
+}
 
 // ..x..x..x..x..x..x..x..x..x..x..x..x..x..x..x..x..x..x..x..x..x..x
 // ^^ DO NOT TOUCH ^^
@@ -60,7 +76,7 @@ UserAuthModel.getCurrentUser = function() {
 // but, you may extend the UserAuthModel Constructor (which is a Backbone Model)
 const User = UserAuthModel.extend({
 	initialize: function(){
-
+		console.log('backbone model called')
 	}
 })
 

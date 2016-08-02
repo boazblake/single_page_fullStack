@@ -12,7 +12,6 @@ import Services from './views/services.js'
 import Information from './views/information.js'
 import Contact from './views/contact.js'
 
-import Login from './views/login.js'
 import Dashboard from './views/dashboard.js'
 
 const app = function() {
@@ -56,8 +55,6 @@ class App extends React.Component {
 	ReactDOM.render((
     <Router history={browserHistory}>
       <Route path='/' component={App} />
-        <Route path='login' component={Login} />
-        <Route path='dashboard' component={Dashboard} />
     </Router>
     ),document.querySelector('.app'))
 }

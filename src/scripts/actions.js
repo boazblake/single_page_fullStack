@@ -15,7 +15,11 @@ const ACTIONS = {
   },
 
   getCurrentUser: function(){
-    return (User.getCurrentUser()) 
+    return User.getCurrentUser()
+  },
+
+  updateCurrentUser: function(currentUserId, newUserInfo){
+    User.updateCurrentUser(currentUserId, newUserInfo)
   },
 
   logUserOut: function(){

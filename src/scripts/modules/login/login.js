@@ -3,27 +3,35 @@ import ReactDOM from 'react-dom'
 import { Router, Route, Link, browserHistory } from 'react-router'
 import ACTIONS from '../../actions.js'
 import toastr from 'toastr'
-import Buttons from './loginButtons.js'
+import Buttons from './userButtons.js'
 
 export default class Login extends React.Component {
   constructor(props) {
     super(props)
-
-    let loggedInState = ACTIONS.getCurrentUser()
-    console.log('loggedInState', loggedInState)
-    console.log('loggedInState true false', (ACTIONS.getCurrentUser() !== {}))
-
-
+    
+    this.loggedInState = ( ACTIONS.getCurrentUser() ) ? true: false;
     this.state={
       email:'',
       password:'',
-      loggedIn: (ACTIONS.getCurrentUser() !== {})
+      loggedIn: this.loggedInState
     }
 
     this._handleLogin = this._handleLogin.bind(this)
     this._handleLogout = this._handleLogout.bind(this)    
     this._handleSignUp = this._handleSignUp.bind(this)    
     this._handleUserData = this._handleUserData.bind(this)
+    this._loadImageLibrary =this._loadImageLibrary.bind(this)
+    this._loadBusinessCards =this._loadBusinessCards.bind(this)
+  }
+
+  _loadImageLibrary(evt){
+    evt.preventDefault()
+    console.log('fin building image library')
+  }
+
+    _loadBusinessCards(evt){
+    evt.preventDefault()
+    console.log('fin building business page')
   }
 
   _handleUserData(evt) {
@@ -41,14 +49,13 @@ export default class Login extends React.Component {
       password:this.state.password
     }
 
-    console.log('newUserData', newUserData)
     ACTIONS.signUserUp(newUserData)
     ACTIONS.logUserIn(newUserData)
     
      this. _clearInputs()
 
      this.setState({
-       loggedIn: (ACTIONS.getCurrentUser() !== {})
+      loggedIn: ! this.loggedInState
      })
   }
 
@@ -60,13 +67,12 @@ export default class Login extends React.Component {
         password:this.state.password
       }
 
-      console.log('newUserData', newUserData)
       ACTIONS.logUserIn(newUserData)
 
       toastr.success('Have fun storming the castle!', 'Miracle Max Says')
       
       this.setState({
-        loggedIn: (ACTIONS.getCurrentUser() !== {})
+       loggedIn: ! this.loggedInState
       })
 
      this. _clearInputs()
@@ -79,7 +85,7 @@ export default class Login extends React.Component {
       ACTIONS.getCurrentUser()
       
       this.setState({
-        loggedIn: (ACTIONS.getCurrentUser() === {})
+       loggedIn: this.loggedInState
       })
      
      this. _clearInputs()
@@ -99,39 +105,17 @@ export default class Login extends React.Component {
 
   render(){
     return(
-      <form >
-          <div className="u-full-width row">
-           
-            <label style={{color:"white"}} htmlFor="exampleEmailInput" className="four columns">Your Email</label>
-            
-            <input onBlur={this._handleUserData}
-              className="u-full-width" 
-              style={{float:"right"}} 
-              type="email"  
-              name="email" 
-              placeholder="test@mailbox.com" 
-              id="emailInput"
-              className="eight columns"/>
-          </div>
+      <div >
+        <Buttons  _handleSignUp={this._handleSignUp} 
+          _handleLogin={this._handleLogin} 
+          _handleLogout={this._handleLogout}
+          _handleSetupUser={this._handleSetupUser}
+          loggedIn={(this.state.loggedIn)}
+          _loadImageLibrary={this._loadImageLibrary}
+          _loadBusinessCards={this._loadBusinessCards}
+          _handleUserData={this._handleUserData} / >
+      </div>      
 
-          <div className="u-full-width">
-            
-            <label htmlFor="examplepwd" style={{color:"white"}} className="four columns">Password</label>
-
-            <input onBlur={this._handleUserData} 
-              style={{float:"right"}} 
-              className="u-full-width row" 
-              type="password" 
-              name="password" 
-              placeholder="password" 
-              id="passwordInput"
-              className="eight columns"/>
-          
-          </div>
-
-       <Buttons _handleSignUp={this._handleSignUp} _handleLogin={this._handleLogin} _handleLogout={this._handleLogout} loggedIn={(this.state.loggedIn)}/ >
-
-      </form>
     )
   }
 }

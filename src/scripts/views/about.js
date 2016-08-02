@@ -7,7 +7,7 @@ class About extends React.Component {
         <div className="container">
           <div className="row">
             <div className="col-sm-6">
-              <img src="images/joshLogo.svg" alt="" />
+              <img src="images/navbar-logo.svg" alt="" />
             </div>
             <div className="col-sm-6 text-center">
               <h2>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec in sem cras amet.</h2>
