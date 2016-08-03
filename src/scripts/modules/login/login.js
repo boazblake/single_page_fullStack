@@ -8,12 +8,13 @@ import Buttons from './userButtons.js'
 export default class Login extends React.Component {
   constructor(props) {
     super(props)
-    
-    this.loggedInState = ( ACTIONS.getCurrentUser() ) ? true: false;
+   
+    console.log("called on refresh?", (!!ACTIONS.getCurrentUser()) )
+
     this.state={
       email:'',
       password:'',
-      loggedIn: this.loggedInState
+      loggedIn: (!!ACTIONS.getCurrentUser())
     }
 
     this._handleLogin = this._handleLogin.bind(this)
@@ -23,6 +24,7 @@ export default class Login extends React.Component {
     this._loadImageLibrary =this._loadImageLibrary.bind(this)
     this._loadBusinessCards =this._loadBusinessCards.bind(this)
   }
+
 
   _loadImageLibrary(evt){
     evt.preventDefault()
@@ -53,9 +55,8 @@ export default class Login extends React.Component {
     ACTIONS.logUserIn(newUserData)
     
      this. _clearInputs()
-
      this.setState({
-      loggedIn: ! this.loggedInState
+      loggedIn: true
      })
   }
 
@@ -68,11 +69,8 @@ export default class Login extends React.Component {
       }
 
       ACTIONS.logUserIn(newUserData)
-
-      toastr.success('Have fun storming the castle!', 'Miracle Max Says')
-      
       this.setState({
-       loggedIn: ! this.loggedInState
+        loggedIn: true
       })
 
      this. _clearInputs()
@@ -80,15 +78,11 @@ export default class Login extends React.Component {
 
   _handleLogout(evt){
       evt.preventDefault()
-      ACTIONS.getCurrentUser()
       ACTIONS.logUserOut()
-      ACTIONS.getCurrentUser()
-      
-      this.setState({
-       loggedIn: this.loggedInState
-      })
-     
-     this. _clearInputs()
+        this.setState({
+          loggedIn: false
+        })
+       this. _clearInputs()
   }
 
   _clearInputs(){
@@ -110,7 +104,7 @@ export default class Login extends React.Component {
           _handleLogin={this._handleLogin} 
           _handleLogout={this._handleLogout}
           _handleSetupUser={this._handleSetupUser}
-          loggedIn={(this.state.loggedIn)}
+          _loggedIn={(this.state.loggedIn)}
           _loadImageLibrary={this._loadImageLibrary}
           _loadBusinessCards={this._loadBusinessCards}
           _handleUserData={this._handleUserData} / >

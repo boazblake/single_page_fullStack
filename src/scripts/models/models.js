@@ -52,24 +52,6 @@ UserAuthModel.logout = function() {
 UserAuthModel.getCurrentUser = function() {
 	return localStorage[app_name + '_user'] ? JSON.parse(localStorage[app_name + '_user']) : null
 }
-
-UserAuthModel.updateCurrentUser = function(currentUserID, newUserInfo){
-	return $.ajax({
-			method: 'PUT',
-			type: 'json',
-			url: `/api/users/${currentUserID}`,
-			data: {
-				name: newUserInfo.newUserName,
-				email: newUserInfo.newUserEmail,
-				password: newUserInfo.newUserPassword,
-				cellphone: newUserInfo.newUserCellphone
-			}
-		}).then((userData) => {
-			localStorage[app_name + '_user'] = JSON.stringify(userData)
-			return userData
-		},(err)=> {console.log(err.responseText)})
-}
-
 // ..x..x..x..x..x..x..x..x..x..x..x..x..x..x..x..x..x..x..x..x..x..x
 // ^^ DO NOT TOUCH ^^
 

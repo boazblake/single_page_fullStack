@@ -8,6 +8,7 @@ export default class Buttons extends React.Component {
     this.state ={
       usetSettingsShow:false
     }
+
     this._showHideUserSettings = this._showHideUserSettings.bind(this)
   }
 
@@ -18,12 +19,13 @@ export default class Buttons extends React.Component {
   }
   
 
-  render(){
-    let showHide = (this.state.usetSettingsShow) ? "row u-full-width opacityON" : "row u-full-width opacityOFF";
 
-    if (this.props.loggedIn) {
+  render(){
+    let showHide = (this.state.usetSettingsShow) ? "row  opacityON" : "row  opacityOFF";
+
+    if (this.props._loggedIn) {
       return(
-        <div className="row u-full-width"style={{padding:"0, 10%"}} >
+        <div className="container-fluid"style={{padding:"0, 10%"}} >
             <button  onClick={this.props._handleLogout} 
             className="btn btn-primary" 
             type="submitLogOut" 
@@ -32,20 +34,14 @@ export default class Buttons extends React.Component {
 
             <button  onClick={this.props._loadImageLibrary} 
             className="btn btn-primary" 
-            type="submitSignUp" 
-            name="signup"  
             style={{color:"white"}}>Image Library</button>
 
             <button  onClick={this.props._loadBusinessCards} 
             className="btn btn-primary" 
-            type="submitSignUp" 
-            name="signup"  
             style={{color:"white"}}>Business Cards</button>
 
             <button  onClick={this._showHideUserSettings} 
             className="btn btn-primary" 
-            type="submitSignUp" 
-            name="signup"  
             style={{color:"white"}}>User Settings</button>
 
             <div className={showHide} style={{float:"right", top:"100%", margin:"auto", position:"absolute", backgroundColor: "#7f8c8d", width:"100%"}}>
