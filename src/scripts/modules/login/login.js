@@ -9,6 +9,7 @@ export default class Login extends React.Component {
   constructor(props) {
     super(props)
    
+
     console.log("called on refresh?", (!!ACTIONS.getCurrentUser()) )
 
     this.state={
@@ -52,11 +53,13 @@ export default class Login extends React.Component {
     }
 
     ACTIONS.signUserUp(newUserData)
+
     ACTIONS.logUserIn(newUserData)
+
     
      this. _clearInputs()
      this.setState({
-      loggedIn: true
+      loggedIn:  (!!ACTIONS.getCurrentUser())
      })
   }
 
@@ -70,7 +73,7 @@ export default class Login extends React.Component {
 
       ACTIONS.logUserIn(newUserData)
       this.setState({
-        loggedIn: true
+        loggedIn:  (!!ACTIONS.getCurrentUser())
       })
 
      this. _clearInputs()
@@ -80,7 +83,7 @@ export default class Login extends React.Component {
       evt.preventDefault()
       ACTIONS.logUserOut()
         this.setState({
-          loggedIn: false
+          loggedIn:  (!!ACTIONS.getCurrentUser())
         })
        this. _clearInputs()
   }
@@ -92,14 +95,14 @@ export default class Login extends React.Component {
     password.value = ''
     this.setState({
       email:'',
-      password:'',
+      password:''
     })
   }
 
 
   render(){
     return(
-      <div >
+      <div className="container-fluid">
         <Buttons  _handleSignUp={this._handleSignUp} 
           _handleLogin={this._handleLogin} 
           _handleLogout={this._handleLogout}

@@ -6,14 +6,6 @@ export default class UserSettings extends React.Component {
   constructor(props){
     super(props);
 
-    this.state = {
-      newUserName:'',
-      newUserEmail:'',
-      newUserPassword:'',
-      newUserCellPhone:''
-    }
-
-
     this._updateUserInfo=this._updateUserInfo.bind(this)
     this._handleUserData=this._handleUserData.bind(this)
   }
@@ -28,7 +20,9 @@ export default class UserSettings extends React.Component {
 _updateUserInfo(evt){
   evt.preventDefault()
 
+  let currentUserInfo = ACTIONS.getCurrentUser()
   let newUserInfo = this.state
+  // only chnages between above objects should be sent
       
   let currentUserID = ACTIONS.getCurrentUser()._id
   ACTIONS.updateCurrentUser(currentUserID, newUserInfo)
@@ -37,7 +31,7 @@ _updateUserInfo(evt){
 
   render(){
     return(
-      <div className=" u-full-width row"  style={{position: "relative", left: "2%"}}>
+      <div className=" u-half-width row"  style={{position: "relative", left: "2%"}}>
         <form style={{float:"right", position: "relative",  right: "75%", textAlign: "left"}}>
         
           <div className=" u-full-width row"  style={{position: "relative", left: "2%"}}>
@@ -86,7 +80,7 @@ _updateUserInfo(evt){
               className="seven columns"/>
             </div>
           </div>
-          <button onClick={this._updateUserInfo}/>
+          <button onClick={this._updateUserInfo}>Update Info</button>
         </form>
         <CurrentUserInfo/>
       </div>

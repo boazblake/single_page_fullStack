@@ -54,7 +54,9 @@ class App extends React.Component {
 
 	ReactDOM.render((
     <Router history={browserHistory}>
-      <Route path='/' component={App} />
+      <Route path='/' component={App} >
+        <Route path='/dashboard' component={Dashboard} />
+      </Route>
     </Router>
     ),document.querySelector('.app'))
 }

@@ -17,7 +17,7 @@ indexRouter.get('/login', function (req, res) {
 });
 
 indexRouter.get('/dashboard', checkAuth, function (req, res) {
-  res.render('dashboard');
+  res.render('index');
 });
 
 indexRouter.get('/forbidden', function (req, res) {
