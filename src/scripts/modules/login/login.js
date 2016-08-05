@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom'
 import { Router, Route, Link, browserHistory } from 'react-router'
 import ACTIONS from '../../actions.js'
 import toastr from 'toastr'
-import Buttons from './userButtons.js'
+import UserOptions from './userOptions.js'
 
 export default class Login extends React.Component {
   constructor(props) {
@@ -103,7 +103,7 @@ export default class Login extends React.Component {
   render(){
     return(
       <div className="container-fluid">
-        <Buttons  _handleSignUp={this._handleSignUp} 
+        <UserOptions  _handleSignUp={this._handleSignUp} 
           _handleLogin={this._handleLogin} 
           _handleLogout={this._handleLogout}
           _handleSetupUser={this._handleSetupUser}

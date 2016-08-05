@@ -18,8 +18,17 @@ const ACTIONS = {
     return User.getCurrentUser()
   },
 
-  updateCurrentUser: function(currentUserId, newUserInfo){
-    User.updateCurrentUser(currentUserId, newUserInfo)
+  updateCurrentUser: function(newUserInfo){
+    let usr = new User(User.getCurrentUser())
+    
+    usr.set({
+      name: newUserInfo.newUserName,
+      email: newUserInfo.newUserEmail,
+      password: newUserInfo.newUserPassword,
+      cellphone: newUserInfo.newUserCellPhone
+    })
+    usr.save().then(console.log('usr', usr))
+    
   },
 
   logUserOut: function(){

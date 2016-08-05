@@ -13,7 +13,7 @@ const usersSchema = new Schema({
   
    // example of optional fields
   name:      { type: String },
-  cellphone: {type: String },
+  cellphone: { type: String },
   createdAt: { type: Date, default: Date.now }
 
 })

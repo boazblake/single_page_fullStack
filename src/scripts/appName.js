@@ -5,14 +5,14 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import { Router, Route, Link, browserHistory } from 'react-router'
 import $ from 'jquery'
-import Navigation from './modules/navigation.js'
-import Home from './views/home.js'
-import About from './views/about.js'
-import Services from './views/services.js'
-import Information from './views/information.js'
-import Contact from './views/contact.js'
+import Navigation from './components/navigation.js'
+import Home from './components/home.js'
+import About from './components/about.js'
+import Services from './components/services.js'
+import Information from './components/information.js'
+import Contact from './components/contact.js'
 
-import Dashboard from './views/dashboard.js'
+import Dashboard from './components/dashboard.js'
 
 const app = function() {
   //SMOOTH SCROLLING EFFECT
@@ -58,7 +58,7 @@ class App extends React.Component {
         <Route path='/dashboard' component={Dashboard} />
       </Route>
     </Router>
-    ),document.querySelector('.app'))
+    ),document.querySelector('#root'))
 }
 
 

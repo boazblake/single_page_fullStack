@@ -14,20 +14,16 @@ export default class UserSettings extends React.Component {
     let stateName = evt.target.name
     let stateValue = evt.target.value
 
-    this.setState({ [stateName]: stateValue });
+    if (stateValue !== '') this.setState({ [stateName]: stateValue });
   }
 
-_updateUserInfo(evt){
-  evt.preventDefault()
+  _updateUserInfo(evt){
+    evt.preventDefault()
+    let newUserInfo = this.state
 
-  let currentUserInfo = ACTIONS.getCurrentUser()
-  let newUserInfo = this.state
-  // only chnages between above objects should be sent
-      
-  let currentUserID = ACTIONS.getCurrentUser()._id
-  ACTIONS.updateCurrentUser(currentUserID, newUserInfo)
 
-}
+    ACTIONS.updateCurrentUser(newUserInfo)
+  }
 
   render(){
     return(

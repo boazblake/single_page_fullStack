@@ -1,5 +1,5 @@
 import React from 'react';
-import Footer from '../modules/footer.js'
+import Footer from './footer.js'
 import $ from 'jquery'
 
 $(document).ready(function (){

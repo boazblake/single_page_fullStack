@@ -6,7 +6,7 @@ export default class Buttons extends React.Component {
   constructor(props) {
     super(props)
     this.state ={
-      usetSettingsShow:false
+      userSettingsShow:false
     }
 
     this._showHideUserSettings = this._showHideUserSettings.bind(this)
@@ -14,14 +14,14 @@ export default class Buttons extends React.Component {
 
   _showHideUserSettings(evt){
     evt.preventDefault()
-      if (!this.state.usetSettingsShow) return this.setState({ usetSettingsShow:true })
-     else  if (this.state.usetSettingsShow) return this.setState({ usetSettingsShow:false })
+      if (!this.state.userSettingsShow) return this.setState({ userSettingsShow:true })
+     else  if (this.state.userSettingsShow) return this.setState({ userSettingsShow:false })
   }
   
 
 
   render(){
-    let showHide = (this.state.usetSettingsShow) ? "row  opacityON" : "row  opacityOFF";
+    let showHide = (this.state.userSettingsShow) ? "row  opacityON" : "row  opacityOFF";
 
     if (this.props._loggedIn) {
       return(

@@ -26,9 +26,8 @@ export default class Dashboard extends React.Component {
     return (
       <div className="container">
         <NavBar/>
-          <a className="button" onClick={this.unMount} href="/auth/logout" method="get">logout</a>
-          <a className="button" href="/updateUser" >update User</a>
-          <a className="button" href="/businesscard" >business Cards</a>
+        <Button>NEW BUSINESS CARD</Button>
+        <BusinessCardList />
       </div>
     )
   }
