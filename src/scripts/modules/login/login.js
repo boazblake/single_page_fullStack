@@ -49,7 +49,7 @@ export default class Login extends React.Component {
       password:this.state.password
     }
 
-    ACTIONS.signUserUp(newUserData)
+    ACTIONS.signUserUp(newUserData, this)
 
     ACTIONS.logUserIn(newUserData, this)
 
