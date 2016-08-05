@@ -5,9 +5,11 @@ const ACTIONS = {
   signUserUp: function(newUserData, self) {
     return User.register(newUserData).then(function(resp){
       console.log(resp, 'resp')
-      self.setState({
-        loggedIn:  (!!ACTIONS.getCurrentUser())
-      })
+      if (resp.email){
+        self.setState({
+          loggedIn:  (!!ACTIONS.getCurrentUser())
+        })
+      }
     })
   },
 
