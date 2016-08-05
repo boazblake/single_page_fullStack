@@ -2,9 +2,12 @@ import {User} from './models/models'
 
 const ACTIONS = {
  
-  signUserUp: function(newUserData) {
+  signUserUp: function(newUserData, self) {
     return User.register(newUserData).then(function(resp){
       console.log(resp, 'resp')
+      self.setState({
+       loggedIn:  (!!ACTIONS.getCurrentUser())
+      })
     })
   },
 

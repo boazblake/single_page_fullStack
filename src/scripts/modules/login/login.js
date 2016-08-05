@@ -51,13 +51,10 @@ export default class Login extends React.Component {
 
     ACTIONS.signUserUp(newUserData)
 
-    ACTIONS.logUserIn(newUserData)
+    ACTIONS.logUserIn(newUserData, this)
 
     
      this. _clearInputs()
-     this.setState({
-      loggedIn:  (!!ACTIONS.getCurrentUser())
-     })
   }
 
   _handleLogin(evt){
