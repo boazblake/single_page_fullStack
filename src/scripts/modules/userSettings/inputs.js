@@ -5,6 +5,9 @@ import CurrentUserInfo from './currentUserInfo.js'
 export default class UserSettings extends React.Component {
   constructor(props){
     super(props);
+    this.state = {
+      userInfo:ACTIONS.getCurrentUser()
+    }
 
     this._updateUserInfo=this._updateUserInfo.bind(this)
     this._handleUserData=this._handleUserData.bind(this)
@@ -21,14 +24,13 @@ export default class UserSettings extends React.Component {
     evt.preventDefault()
     let newUserInfo = this.state
 
-
     ACTIONS.updateCurrentUser(newUserInfo)
   }
 
   render(){
     return(
       <div className=" u-half-width row"  style={{position: "relative", left: "2%"}}>
-        <form style={{float:"right", position: "relative",  right: "75%", textAlign: "left"}}>
+        <form style={{float:"left", position: "relative", textAlign: "left"}}>
         
           <div className=" u-full-width row"  style={{position: "relative", left: "2%"}}>
             <div className=" u-half-width row"  style={{position: "relative", left: "2%"}}>
@@ -78,7 +80,7 @@ export default class UserSettings extends React.Component {
           </div>
           <button onClick={this._updateUserInfo}>Update Info</button>
         </form>
-        <CurrentUserInfo/>
+        <CurrentUserInfo info={this.state}/>
       </div>
     )
   }

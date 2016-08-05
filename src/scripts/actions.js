@@ -8,9 +8,12 @@ const ACTIONS = {
     })
   },
 
-  logUserIn: function(newUserData) {
+  logUserIn: function(newUserData, self) {
     return User.login(newUserData.email,newUserData.password).then(function(resp){
       console.log(resp)
+      self.setState({
+        loggedIn:  (!!ACTIONS.getCurrentUser())
+      })
     })
   },
 
@@ -27,13 +30,17 @@ const ACTIONS = {
       password: newUserInfo.newUserPassword,
       cellphone: newUserInfo.newUserCellPhone
     })
-    usr.save().then(console.log('usr', usr))
-    
+    usr.save().then(function(resp){
+      console.log(resp)
+    })
   },
 
-  logUserOut: function(){
+  logUserOut: function(self){
     return User.logout().then(function(resp){
       console.log(resp)
+      self.setState({
+        loggedIn:  (!!ACTIONS.getCurrentUser())
+      })
     })
   }
 }

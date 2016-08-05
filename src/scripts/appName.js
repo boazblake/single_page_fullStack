@@ -1,20 +1,17 @@
-import Backbone from 'backbone'
 import init from './init'
-
+import Backbone from 'backbone'
 import React from 'react'
 import ReactDOM from 'react-dom'
-import { Router, Route, Link, browserHistory } from 'react-router'
+import { Router, Route, IndexRoute, browserHistory } from 'react-router';
+// import { Provider} from 'react-redux';
+// import store, {history} from './store'
 import $ from 'jquery'
-import Navigation from './components/navigation.js'
-import Home from './components/home.js'
-import About from './components/about.js'
-import Services from './components/services.js'
-import Information from './components/information.js'
-import Contact from './components/contact.js'
 
-import Dashboard from './components/dashboard.js'
+//components
+import App from './components/App.js'
 
 const app = function() {
+
   //SMOOTH SCROLLING EFFECT
 $(function() {
   $('a[href*="#"]:not([href="#"])').click(function() {
@@ -32,33 +29,11 @@ $(function() {
 });
 
 
-
-class App extends React.Component {
-  constructor(props) {
-      super(props);
-  }
-
-  render(){
-    return (
-      <div>
-        <Navigation/>
-        <Home/>
-        <About/>
-        <Services/>
-        <Information/>
-        <Contact/>
-      </div>
-      )
-  }
-}
-
-	ReactDOM.render((
-    <Router history={browserHistory}>
-      <Route path='/' component={App} >
-        <Route path='/dashboard' component={Dashboard} />
-      </Route>
-    </Router>
-    ),document.querySelector('#root'))
+ReactDOM.render((
+  <Router history={browserHistory}>
+    <Route path='/' component={App}></Route>
+  </Router>
+  ),document.querySelector('#root'))
 }
 
 

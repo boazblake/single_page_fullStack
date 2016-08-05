@@ -21,11 +21,11 @@ export default class Buttons extends React.Component {
 
 
   render(){
-    let showHide = (this.state.userSettingsShow) ? "row  opacityON" : "row  opacityOFF";
+    let showHide = (this.state.userSettingsShow) ? "container-fluid  opacityON" : "container-fluid  opacityOFF";
 
     if (this.props._loggedIn) {
       return(
-        <div className="container-fluid"style={{padding:"0, 10%"}} >
+        <div className="container"style={{padding:"0, 10%"}} >
             <button  onClick={this.props._handleLogout} 
             className="btn btn-primary" 
             type="submitLogOut" 
@@ -44,8 +44,8 @@ export default class Buttons extends React.Component {
             className="btn btn-primary" 
             style={{color:"white"}}>User Settings</button>
 
-            <div className={showHide} style={{float:"right", top:"100%", margin:"auto", position:"absolute", backgroundColor: "#7f8c8d", width:"100%"}}>
-              <div  className="dropdown-content row" id="myDropdown">
+            <div className={showHide} style={{float:"right", top:"100%", margin:"auto", position:"absolute", backgroundColor: "#7f8c8d", width:"80%"}}>
+              <div  className="dropdown-content container-fluid" id="myDropdown">
                   <UserSettings />
               </div>
             </div>
@@ -69,7 +69,7 @@ export default class Buttons extends React.Component {
             className="eight columns"/>
           </div>
 
-          <div className="u-full-width row" style={{position: "relative", left: "50%"}}>
+          <div className=" row" style={{position: "relative", left: "50%"}}>
             <label htmlFor="examplepwd" style={{color:"white", paddingRight:"1%"}} className="four columns">Password</label>
             <input onBlur={this.props._handleUserData} 
             style={{float:"right"}} 

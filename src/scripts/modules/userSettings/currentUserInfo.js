@@ -6,11 +6,12 @@ export default class CurrentUserInfo extends React.Component {
     super(props)
   }
 
+
   render(){
-    if (ACTIONS.getCurrentUser()) {
-      let currentUser = ACTIONS.getCurrentUser()
+    if (this.props.info) {
+      let currentUser = this.props.info.userInfo
      return(
-       <div className="u-half-width row "  style={{float:"left", position: "relative",  left: "75%", textAlign: "right"}}>
+       <div className="u-half-width container-fluid "  style={{float:"right", position: "relative", textAlign: "right"}}>
  
          <div className=" five colums"  >
            <label style={{color:"#2c3e50", paddingRight:"1%", float:"left"}} htmlFor="nameInput" className="five columns">CURRENT NAME:  </label>

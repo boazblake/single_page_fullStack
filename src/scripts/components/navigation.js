@@ -28,7 +28,7 @@ _goToRegisterPage(e){
 
 
   render() {
-    let showHide = (this.state.loginShow) ? "row one-half column opacityON" : "row one-half column opacityOFF";
+    let showHide = (this.state.loginShow) ? "container-fluid one-half column opacityON" : "container-fluid one-half column opacityOFF";
 
     return (
       <nav className="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -51,7 +51,7 @@ _goToRegisterPage(e){
               <li><Link to="#google_map">Contact</Link></li>
               <li><a id="login" onClick={this._showHideLogin}>Login</a></li>
               <li className={showHide} style={{float:"left", top:"100%", right:0, left:0, position:"absolute", backgroundColor: "#2c3e50", width:"100%"}}>
-                <div  className="dropdown-content row" id="myDropdown">
+                <div  className="dropdown-content container-fluid" id="myDropdown">
                     <Login />
                 </div>
               </li>
