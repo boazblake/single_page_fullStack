@@ -6,7 +6,7 @@ const ACTIONS = {
     return User.register(newUserData).then(function(resp){
       console.log(resp, 'resp')
       self.setState({
-       loggedIn:  (!!ACTIONS.getCurrentUser())
+        loggedIn:  (!!ACTIONS.getCurrentUser())
       })
     })
   },
