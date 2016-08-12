@@ -78,10 +78,10 @@ export default class Login extends React.Component {
   }
 
   _clearInputs(){
-    let email = document.querySelector('#emailInput')
-    let password = document.querySelector('#passwordInput')
-    email.value = ''
-    password.value = ''
+    // let email = document.querySelector('#emailInput')
+    // let password = document.querySelector('#passwordInput')
+    // email.value = ''
+    // password.value = ''
     this.setState({
       email:'',
       password:''
