@@ -78,6 +78,7 @@
     "passport-local": "^1.0.0",
     "react": "^15.1.0",
     "react-dom": "^15.1.0",
+    "raven-js": "^2.3.0",
     "react-router": "^2.6.0",
     "toastr": "^2.1.2"
   }

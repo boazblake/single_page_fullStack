@@ -23,13 +23,12 @@ export default class Login extends React.Component {
     this._loadBusinessCards =this._loadBusinessCards.bind(this)
   }
 
-
   _loadImageLibrary(evt){
     evt.preventDefault()
     console.log('fin building image library')
   }
 
-    _loadBusinessCards(evt){
+  _loadBusinessCards(evt){
     evt.preventDefault()
     console.log('fin building business page')
   }
@@ -87,7 +86,6 @@ export default class Login extends React.Component {
       password:''
     })
   }
-
 
   render(){
     return(

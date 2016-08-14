@@ -7,6 +7,12 @@ import { Router, Route, IndexRoute, browserHistory } from 'react-router';
 // import store, {history} from './store'
 import $ from 'jquery'
 
+//Sentry
+import Raven from 'raven-js';
+import { sentry_url } from '../../config/sentry.js';
+
+Raven.config(sentry_url).install();
+
 //components
 import App from './components/App.js'
 

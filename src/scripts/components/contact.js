@@ -30,6 +30,7 @@ $(document).ready(function (){
     scale: .5,
     strokeColor: '#7f8c8d'
   };
+
   var marker = new google.maps.Marker({
     position: latlng, 
     map: map, 
@@ -50,18 +51,81 @@ $(document).ready(function (){
 
 
 class Contact extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state={
+      message:{}
+    };
+
+  this._handleSubmitMessage = this._handleSubmitMessage.bind(this);
+  }
+
+  _handleOnBlur(evt){
+    console.log(evt.target.value);
+    let key = evt.target.id
+    console.log('key', key);
+    let value = evt.target.value
+    console.log('value', value);
+
+  }
+
+  _handleSubmitMessage(evt) {
+    evt.preventDefault();
+    let message = this.state.message;
+    console.log(`submit message with ${message}`);
+  }
+
   render(){
     return(
       <div id="contact" className="pad-section">
         <div className="container">
           <div className="row">
-            <div className="col-sm-12 text-center">
-              <h3>Parallax scrolling effect is in action</h3>
-              <h4>The next is the address on Google maps</h4>
+
+            <div className="col-sm-12 col-md-4 text-left" style={{height:"100px"}}>
+              <img style={{width:"80px", position:"absolute", zIndex:"0"}} src="images/navbar-logo.svg"/>
+              <h3 style={{position:"absolute", bottom:"0px", zIndex:"1"}}>Company Name</h3>
             </div>
+
+
+            <div className="col-sm-12 col-md-4 text-left">
+              <h4><label>Address</label> 111 This Way</h4>
+              <h4><label>Phone</label> (123)456-7890</h4>
+              <h4><label>Email</label> thisway@thisway.com</h4>
+            </div>
+
+
+              <div style={{backgroundColor:"blue", right:"-100px"}}>
+                <form className="col-sm-12 col-md-4 text-right">
+                  <div className="row">
+                    <div className="six columns">
+                      <label htmlFor="senderEmail">Your email</label>
+                      <input onBlur={this._handleOnBlur} className="u-full-width" type="email" placeholder="test@mailbox.com" id="senderEmail"/>
+                    </div>
+                    <div className="six columns">
+                      <label htmlFor="recipientEmail">Reason For contacting</label>
+                      <select onBlur={this._handleOnBlur} className="u-full-width" id="ReasonForContacting">
+                        <option value="Questions">Questions</option>
+                        <option value="Admiration">Admiration</option>
+                        <option value="Billing">Billing</option>
+                      </select>
+                    </div>
+
+
+                  </div>
+                  <label htmlFor="Message">Message</label>
+                  <textarea onBlur={this._handleOnBlur} className="u-full-width" placeholder="Hi Boaz …" id="Message"></textarea>
+                  <br/>
+                  <label className="-send-yourself-copy col-sm-12 col-md-12 col-lg-12">
+                    <h5>Send a copy to yourself</h5>
+                    <input type="checkbox" />
+                  </label>
+                  <input type="submit" value="SUBMIT" className="btn btn-primary btn-sm" onClick={this._handleSubmitMessage}/>
+                </form>
+              </div>
           </div>
         </div>
-      
+
       <div id="google_map"></div>
 
       <Footer/>
