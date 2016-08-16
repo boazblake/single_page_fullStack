@@ -54,26 +54,26 @@ class Contact extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state={
-      message:{}
-    };
-
   this._handleSubmitMessage = this._handleSubmitMessage.bind(this);
+  this._handleOnBlur = this._handleOnBlur.bind(this);
   }
 
   _handleOnBlur(evt){
-    console.log(evt.target.value);
-    let key = evt.target.id
-    console.log('key', key);
-    let value = evt.target.value
-    console.log('value', value);
-
+    let labelInput = evt.target.id
+    let valueInput = evt.target.value
+    if (labelInput === 'checkboxMessage') {
+     valueInput = (!!document.querySelector("#checkboxMessage").checked) 
+    }
+    let messageComponentInput = {}
+      messageComponentInput[labelInput] = valueInput;
+    this.setState(messageComponentInput)    
   }
 
   _handleSubmitMessage(evt) {
     evt.preventDefault();
     let message = this.state.message;
-    console.log(`submit message with ${message}`);
+    console.log('submit message with these details:', this.state);
+    console.log('submit message with these details:', message);
   }
 
   render(){
@@ -94,36 +94,43 @@ class Contact extends React.Component {
               <h4><label>Email</label> thisway@thisway.com</h4>
             </div>
 
-
-              <div style={{backgroundColor:"blue", right:"-100px"}}>
-                <form className="col-sm-12 col-md-4 text-right">
+            <div >
+              <form className="col-sm-12 col-md-4 text-right">
+                <div className="row">
+                <label style={{fontSize:"2em"}}>QUICK CONTACT</label>
                   <div className="row">
-                    <div className="six columns">
-                      <label htmlFor="senderEmail">Your email</label>
-                      <input onBlur={this._handleOnBlur} className="u-full-width" type="email" placeholder="test@mailbox.com" id="senderEmail"/>
-                    </div>
-                    <div className="six columns">
-                      <label htmlFor="recipientEmail">Reason For contacting</label>
-                      <select onBlur={this._handleOnBlur} className="u-full-width" id="ReasonForContacting">
-                        <option value="Questions">Questions</option>
-                        <option value="Admiration">Admiration</option>
-                        <option value="Billing">Billing</option>
-                      </select>
-                    </div>
-
-
+                    <label htmlFor="senderEmail">Your email</label>
+                    <input onBlur={this._handleOnBlur} className="u-full-width" type="email" placeholder="test@mailbox.com" id="senderEmail"/>
                   </div>
-                  <label htmlFor="Message">Message</label>
-                  <textarea onBlur={this._handleOnBlur} className="u-full-width" placeholder="Hi Boaz …" id="Message"></textarea>
-                  <br/>
-                  <label className="-send-yourself-copy col-sm-12 col-md-12 col-lg-12">
-                    <h5>Send a copy to yourself</h5>
-                    <input type="checkbox" />
-                  </label>
-                  <input type="submit" value="SUBMIT" className="btn btn-primary btn-sm" onClick={this._handleSubmitMessage}/>
-                </form>
-              </div>
+
+                  <div className="u-full-width">
+                    <label htmlFor="reasonsForContacting">Reason For contacting</label>
+                    <select onBlur={this._handleOnBlur} className="u-full-width" id="ReasonForContacting">
+                      <option value="Questions">Questions</option>
+                      <option value="Admiration">Admiration</option>
+                      <option value="Billing">Billing</option>
+                    </select>
+                  </div>
+
+                  <div className="u-full-width">
+                    <label htmlFor="MessageText" style={{verticalAlign:"top"}}>Message</label>
+                    <textarea onBlur={this._handleOnBlur} className="u-full-width" placeholder="Hi Boaz …" id="Message"></textarea>
+                  </div>
+                  <div className="u-full-width">
+                    <label className="col-sm-12 col-md-12 col-lg-12">
+                      <h5 style={{display:'inline-block'}}>Send a copy to yourself</h5> { "    " }
+                      <input type="checkbox" onChange={this._handleOnBlur} id="checkboxMessage"/>
+                    </label>
+                  </div>
+                  <div className="u-full-width">
+                    <input type="submit" value="SUBMIT" className="btn btn-primary btn-sm" onClick={this._handleSubmitMessage}/>
+                  </div>
+                </div>
+               </form>
+            </div>
           </div>
+
+
         </div>
 
       <div id="google_map"></div>
