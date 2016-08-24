@@ -24,7 +24,7 @@ _goToRegisterPage(e){
     e.preventDefault()
 
 }
-                      // <button className="btn btn-primary" style={{color:"white"}}><Link  to="/register" >SIGN   UP</Link></button>
+// <button className="btn btn-primary" style={{color:"white"}}><Link  to="/register" >SIGN   UP</Link></button>
 
 
   render() {

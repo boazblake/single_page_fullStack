@@ -16,6 +16,7 @@ Raven.config(sentry_url).install();
 //components
 import App from './components/App.js'
 
+//start the majik...
 const app = function() {
 
   //SMOOTH SCROLLING EFFECT
@@ -31,8 +32,22 @@ $(function() {
         return false;
       }
     }
-  });
-});
+    
+  //SMOOTH SCROLLING EFFECT from: https://paulund.co.uk/smooth-scroll-to-internal-links-with-jquery
+// $(document).ready(function(){
+//   $('a[href^="#"]').on('click',function (e) {
+//       e.preventDefault();
+
+//       var target = this.hash;
+//       var $target = $(target);
+
+//       $('html, body').stop().animate({
+//           'scrollTop': $target.offset().top
+//       }, 900, 'swing', function () {
+//           window.location.hash = target;
+//       });
+//   });
+// });
 
 
 ReactDOM.render((
