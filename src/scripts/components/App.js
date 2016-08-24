@@ -6,6 +6,7 @@ import About from './about.js'
 import Services from './services.js'
 import Information from './information.js'
 import Contact from './contact.js'
+import Footer from './footer.js'
 
 export default class App extends React.Component {
   constructor(props) {
@@ -21,6 +22,7 @@ export default class App extends React.Component {
         <Services/>
         <Information/>
         <Contact/>
+        <Footer/>
       </div>
       )
   }

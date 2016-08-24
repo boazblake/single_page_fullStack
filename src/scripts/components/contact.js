@@ -1,6 +1,7 @@
 import React from 'react';
 import Footer from './footer.js'
 import $ from 'jquery'
+import toastr from 'toastr'
 
 $(document).ready(function (){
 
@@ -71,9 +72,35 @@ class Contact extends React.Component {
 
   _handleSubmitMessage(evt) {
     evt.preventDefault();
-    let message = this.state.message;
-    console.log('submit message with these details:', this.state);
-    console.log('submit message with these details:', message);
+    let messageObject = this.state
+    for (var props in messageObject){
+      return messageObject[props].props
+    }
+    console.log({messageObject})
+    toastr["info"]('submit message with these details >>', { messageObject }, {
+      "closeButton": false,
+      "debug": false,
+      "newestOnTop": false,
+      "progressBar": true,
+      "positionClass": "toast-top-right",
+      "preventDuplicates": false,
+      "onclick": null,
+      "showDuration": "300",
+      "hideDuration": "1000",
+      "timeOut": "5000",
+      "extendedTimeOut": "1000",
+      "showEasing": "swing",
+      "hideEasing": "linear",
+      "showMethod": "fadeIn",
+      "hideMethod": "fadeOut"
+    })
+  }
+
+  _handleShowMessageContainer(evt){
+    evt.preventDefault();
+    let showMessageContainer = this.setState({showMessageContainer: true})
+    let hideMessageContainer  = this.setState({showMessageContainer: false})
+    if (!this.state.showMessageContainer)? hideMessageContainer : showMessageContainer
   }
 
   render(){
@@ -97,7 +124,8 @@ class Contact extends React.Component {
             <div >
               <form className="col-sm-12 col-md-4 text-right">
                 <div className="row">
-                <label style={{fontSize:"2em"}}>QUICK CONTACT</label>
+                <button onClick={this._handleShowMessageContainer} style={{fontSize:"2em"}} className="btn btn-primary btn-lg">QUICK CONTACT</button>
+                  
                   <div className="row">
                     <label htmlFor="senderEmail">Your email</label>
                     <input onBlur={this._handleOnBlur} className="u-full-width" type="email" placeholder="test@mailbox.com" id="senderEmail"/>
@@ -125,6 +153,7 @@ class Contact extends React.Component {
                   <div className="u-full-width">
                     <input type="submit" value="SUBMIT" className="btn btn-primary btn-sm" onClick={this._handleSubmitMessage}/>
                   </div>
+
                 </div>
                </form>
             </div>
@@ -135,7 +164,6 @@ class Contact extends React.Component {
 
       <div id="google_map"></div>
 
-      <Footer/>
 
       </div>
 
