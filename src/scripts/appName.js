@@ -28,12 +28,14 @@ $(function() {
       if (target.length) {
         $('html, body').animate({
           scrollTop: target.offset().top
-        }, 900);
+        }, 900, 'swing');
         return false;
       }
     }
-    
-  //SMOOTH SCROLLING EFFECT from: https://paulund.co.uk/smooth-scroll-to-internal-links-with-jquery
+  })
+})
+
+//   //SMOOTH SCROLLING EFFECT from: https://paulund.co.uk/smooth-scroll-to-internal-links-with-jquery
 // $(document).ready(function(){
 //   $('a[href^="#"]').on('click',function (e) {
 //       e.preventDefault();
