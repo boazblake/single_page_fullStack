@@ -48,7 +48,7 @@ _goToRegisterPage(e){
               <li><Link to="#about">About</Link></li>
               <li><Link to="#services">Services</Link></li>
               <li><Link to="#information">Information</Link></li>
-              <li><Link to="#google_map">Contact</Link></li>
+              <li><Link to="#contact">Contact</Link></li>
               <li><a id="login" onClick={this._showHideLogin}>Login</a></li>
               <li className={showHide} style={{float:"left", top:"100%", right:0, left:0, position:"absolute", backgroundColor: "#2c3e50", width:"100%"}}>
                 <div  className="dropdown-content container-fluid" id="myDropdown">
