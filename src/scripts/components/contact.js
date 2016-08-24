@@ -55,8 +55,14 @@ class Contact extends React.Component {
   constructor(props) {
     super(props);
 
-  this._handleSubmitMessage = this._handleSubmitMessage.bind(this);
-  this._handleOnBlur = this._handleOnBlur.bind(this);
+    this.state={
+      showMessageContainer: false,
+      messageObject: {}
+    }
+
+    this._handleShowMessageContainer = this._handleShowMessageContainer.bind(this);
+    this._handleSubmitMessage = this._handleSubmitMessage.bind(this);
+    this._handleOnBlur = this._handleOnBlur.bind(this);
   }
 
   _handleOnBlur(evt){
@@ -65,45 +71,54 @@ class Contact extends React.Component {
     if (labelInput === 'checkboxMessage') {
      valueInput = (!!document.querySelector("#checkboxMessage").checked) 
     }
+  
     let messageComponentInput = {}
       messageComponentInput[labelInput] = valueInput;
-    this.setState(messageComponentInput)    
+
+    let message = Object.assign({}, this.state.messageObject, {messageObject:messageComponentInput})
+    this.setState(message)    
   }
 
   _handleSubmitMessage(evt) {
     evt.preventDefault();
-    let messageObject = this.state
+    let messageObject = this.state.messageObject
+    console.log(messageObject)
+
     for (var props in messageObject){
       return messageObject[props].props
     }
-    console.log({messageObject})
-    toastr["info"]('submit message with these details >>', { messageObject }, {
-      "closeButton": false,
-      "debug": false,
-      "newestOnTop": false,
-      "progressBar": true,
-      "positionClass": "toast-top-right",
-      "preventDuplicates": false,
-      "onclick": null,
-      "showDuration": "300",
-      "hideDuration": "1000",
-      "timeOut": "5000",
-      "extendedTimeOut": "1000",
-      "showEasing": "swing",
-      "hideEasing": "linear",
-      "showMethod": "fadeIn",
-      "hideMethod": "fadeOut"
-    })
+    console.log(messageObject)
+    // toastr["info"]('submit message with these details >>', { messageObject }, {
+    //   "closeButton": false,
+    //   "debug": false,
+    //   "newestOnTop": false,
+    //   "progressBar": true,
+    //   "positionClass": "toast-top-right",
+    //   "preventDuplicates": false,
+    //   "onclick": null,
+    //   "showDuration": "300",
+    //   "hideDuration": "1000",
+    //   "timeOut": "5000",
+    //   "extendedTimeOut": "1000",
+    //   "showEasing": "swing",
+    //   "hideEasing": "linear",
+    //   "showMethod": "fadeIn",
+    //   "hideMethod": "fadeOut"
+    // })
   }
 
   _handleShowMessageContainer(evt){
     evt.preventDefault();
-    let showMessageContainer = this.setState({showMessageContainer: true})
-    let hideMessageContainer  = this.setState({showMessageContainer: false})
-    if (!this.state.showMessageContainer)? hideMessageContainer : showMessageContainer
+    let currentStateMessageContainer = this.state.showMessageContainer
+    if (currentStateMessageContainer === false) {
+      return this.setState({showMessageContainer: true})
+    } else {return this.setState({showMessageContainer: false})}
   }
 
   render(){
+
+    let showMessageContainer = (this.state.showMessageContainer) ? "container-fluid one-half column opacityON" : "container-fluid one-half column opacityOFF";
+
     return(
       <div id="contact" className="pad-section">
         <div className="container">
@@ -125,35 +140,35 @@ class Contact extends React.Component {
               <form className="col-sm-12 col-md-4 text-right">
                 <div className="row">
                 <button onClick={this._handleShowMessageContainer} style={{fontSize:"2em"}} className="btn btn-primary btn-lg">QUICK CONTACT</button>
-                  
-                  <div className="row">
-                    <label htmlFor="senderEmail">Your email</label>
-                    <input onBlur={this._handleOnBlur} className="u-full-width" type="email" placeholder="test@mailbox.com" id="senderEmail"/>
-                  </div>
+                  <div className={showMessageContainer}>
+                    <div className="row">
+                      <label htmlFor="senderEmail">Your email</label>
+                      <input required="required" onBlur={this._handleOnBlur} className="u-full-width" type="email" placeholder="test@mailbox.com" id="senderEmail"/>
+                    </div>
 
-                  <div className="u-full-width">
-                    <label htmlFor="reasonsForContacting">Reason For contacting</label>
-                    <select onBlur={this._handleOnBlur} className="u-full-width" id="ReasonForContacting">
-                      <option value="Questions">Questions</option>
-                      <option value="Admiration">Admiration</option>
-                      <option value="Billing">Billing</option>
-                    </select>
-                  </div>
+                    <div className="u-full-width">
+                      <label htmlFor="reasonsForContacting">Reason For contacting</label>
+                      <select onBlur={this._handleOnBlur} className="u-full-width" id="ReasonForContacting">
+                        <option value="Questions">Questions</option>
+                        <option value="Admiration">Admiration</option>
+                        <option value="Billing">Billing</option>
+                      </select>
+                    </div>
 
-                  <div className="u-full-width">
-                    <label htmlFor="MessageText" style={{verticalAlign:"top"}}>Message</label>
-                    <textarea onBlur={this._handleOnBlur} className="u-full-width" placeholder="Hi Boaz …" id="Message"></textarea>
+                    <div className="u-full-width">
+                      <label htmlFor="MessageText" style={{verticalAlign:"top"}}>Message</label>
+                      <textarea onBlur={this._handleOnBlur} className="u-full-width" placeholder="Hi Boaz …" id="Message"></textarea>
+                    </div>
+                    <div className="u-full-width">
+                      <label className="col-sm-12 col-md-12 col-lg-12">
+                        <h5 style={{display:'inline-block'}}>Send a copy to yourself</h5> { "    " }
+                        <input required="required" type="checkbox" onChange={this._handleOnBlur} id="checkboxMessage"/>
+                      </label>
+                    </div>
+                    <div className="u-full-width">
+                      <input required="required" type="submit" value="SUBMIT" className="btn btn-primary btn-sm" onClick={this._handleSubmitMessage}/>
+                    </div>
                   </div>
-                  <div className="u-full-width">
-                    <label className="col-sm-12 col-md-12 col-lg-12">
-                      <h5 style={{display:'inline-block'}}>Send a copy to yourself</h5> { "    " }
-                      <input type="checkbox" onChange={this._handleOnBlur} id="checkboxMessage"/>
-                    </label>
-                  </div>
-                  <div className="u-full-width">
-                    <input type="submit" value="SUBMIT" className="btn btn-primary btn-sm" onClick={this._handleSubmitMessage}/>
-                  </div>
-
                 </div>
                </form>
             </div>
