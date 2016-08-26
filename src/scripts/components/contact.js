@@ -57,7 +57,7 @@ class Contact extends React.Component {
 
     this.state={
       showMessageContainer: false,
-      messageObject: {}
+      messageObject:{}
     }
 
     this._handleShowMessageContainer = this._handleShowMessageContainer.bind(this);
@@ -66,45 +66,55 @@ class Contact extends React.Component {
   }
 
   _handleOnBlur(evt){
+    //get data from input
     let labelInput = evt.target.id
     let valueInput = evt.target.value
+    //get current state
+    let messageObject = this.state.messageObject;
+
+    //checkbox verification
     if (labelInput === 'checkboxMessage') {
      valueInput = (!!document.querySelector("#checkboxMessage").checked) 
     }
-  
-    let messageComponentInput = {}
-      messageComponentInput[labelInput] = valueInput;
+    //make an object from input
+    let messageComponentInput = {[labelInput]: valueInput};
 
-    let message = Object.assign({}, this.state.messageObject, {messageObject:messageComponentInput})
-    this.setState(message)
+    //set object on state
+    let updatedMsgObject = Object.assign({}, messageObject, messageComponentInput)
+    let newStateMsg = {messageObject:updatedMsgObject}
+    this.setState(newStateMsg)
   }
 
   _handleSubmitMessage(evt) {
+    //take object from state
     evt.preventDefault();
     let messageObject = this.state.messageObject
 
     for (var props in messageObject){
       messageObject[props].props
     }
-    console.log(messageObject)
 
-    toastr["success"]('submit message with these details >>', messageObject , {
-      "closeButton": false,
-      "debug": false,
-      "newestOnTop": false,
-      "progressBar": true,
-      "positionClass": "toast-top-right",
-      "preventDuplicates": false,
-      "onclick": null,
-      "showDuration": "300",
-      "hideDuration": "1000",
-      "timeOut": "5000",
-      "extendedTimeOut": "1000",
-      "showEasing": "swing",
-      "hideEasing": "linear",
-      "showMethod": "fadeIn",
-      "hideMethod": "fadeOut"
-    })
+    for (var props in messageObject) {
+      toastr["info"]('Your message has been delivered',messageObject[props] , {
+        "background-color":"#2c3e50",
+        "closeButton": true,
+        "newestOnTop": false,
+        "progressBar": true,
+        "positionClass": "toast-top-full-width",
+        "preventDuplicates": true,
+        "onclick": null,
+        "showDuration": "300",
+        "hideDuration": "1000",
+        "timeOut": "5000",
+        "extendedTimeOut": "1000",
+        "showEasing": "swing",
+        "hideEasing": "linear",
+        "showMethod": "fadeIn",
+        "hideMethod": "fadeOut"
+      })      
+    }
+
+
   }
 
   _handleShowMessageContainer(evt){
