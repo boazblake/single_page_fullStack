@@ -76,35 +76,35 @@ class Contact extends React.Component {
       messageComponentInput[labelInput] = valueInput;
 
     let message = Object.assign({}, this.state.messageObject, {messageObject:messageComponentInput})
-    this.setState(message)    
+    this.setState(message)
   }
 
   _handleSubmitMessage(evt) {
     evt.preventDefault();
     let messageObject = this.state.messageObject
-    console.log(messageObject)
 
     for (var props in messageObject){
-      return messageObject[props].props
+      messageObject[props].props
     }
     console.log(messageObject)
-    // toastr["info"]('submit message with these details >>', { messageObject }, {
-    //   "closeButton": false,
-    //   "debug": false,
-    //   "newestOnTop": false,
-    //   "progressBar": true,
-    //   "positionClass": "toast-top-right",
-    //   "preventDuplicates": false,
-    //   "onclick": null,
-    //   "showDuration": "300",
-    //   "hideDuration": "1000",
-    //   "timeOut": "5000",
-    //   "extendedTimeOut": "1000",
-    //   "showEasing": "swing",
-    //   "hideEasing": "linear",
-    //   "showMethod": "fadeIn",
-    //   "hideMethod": "fadeOut"
-    // })
+
+    toastr["success"]('submit message with these details >>', messageObject , {
+      "closeButton": false,
+      "debug": false,
+      "newestOnTop": false,
+      "progressBar": true,
+      "positionClass": "toast-top-right",
+      "preventDuplicates": false,
+      "onclick": null,
+      "showDuration": "300",
+      "hideDuration": "1000",
+      "timeOut": "5000",
+      "extendedTimeOut": "1000",
+      "showEasing": "swing",
+      "hideEasing": "linear",
+      "showMethod": "fadeIn",
+      "hideMethod": "fadeOut"
+    })
   }
 
   _handleShowMessageContainer(evt){
