@@ -2,6 +2,7 @@ import React from 'react';
 import Footer from './footer.js'
 import $ from 'jquery'
 import toastr from 'toastr'
+import msgComponent from '../modules/msg/msg.js';
 
 $(document).ready(function (){
 
@@ -93,6 +94,9 @@ class Contact extends React.Component {
     for (var props in messageObject){
       messageObject[props].props
     }
+
+    msgComponent.sendMsg(messageObject)
+
 
     for (var props in messageObject) {
       toastr["info"]('Your message has been delivered',messageObject[props] , {
