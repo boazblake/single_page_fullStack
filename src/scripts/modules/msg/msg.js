@@ -1,41 +1,32 @@
-import nodemailer from 'nodemailer';
+// var email   = require("../../../../node_modules/emailjs/email");
+import email from "emailjs";
 
 import secret from '../../../../config/secrets.js';
 
 var msgComponent = function (msgObject) {
 
   var sendMsg = function(msgObject) {
-    // create reusable transporter object using the default SMTP transport
 
-    var smtpTransport = nodemailer.createTransport("SMTP",{
-        service: "Gmail",
-        auth: {
-            user: "boazblake@gmail.com",
-            pass: secret.emailPass
-        }
+    var server = email.server.connect({
+       user:    "boazblake@gmail.com", 
+       password: secret.emailPass, 
+       host:    "smtp.gmail.com", 
+       ssl:     false
     });
 
-    // setup e-mail data with unicode symbols
     let senderRequest = (msgObject.checkboxMessage) ? msgObject.senderEmail : '';
 
-    var mailOptions = {
+    var completeMessage = {
         from:msgObject.senderEmail, // sender address
         to: `boazblake@gmail.com, ${senderRequest}`, // list of receivers
         subject:msgObject.ReasonForContacting , // Subject line
         text: msgObject.Message, // plaintext body
     };
 
-    // send mail with defined transport object
-    smtpTransport.sendMail(mailOptions, function(error, info){
-        if(error){
-            return console.log(error);
-        }
-        console.log('Message sent: ' + info.response);
-        smtpTransport.close(); // shut down the connection pool, no more messages
-    });
+    // send the message and get a callback with an error or details of the message that was sent
+    server.send(completeMessage, function(err, message) { console.log(err || message); });
   }
   
-
   return {
     sendMsg: sendMsg
   }
